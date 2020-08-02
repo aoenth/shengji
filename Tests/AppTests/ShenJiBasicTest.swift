@@ -102,9 +102,33 @@ class ShenJiBasicTest: XCTestCase {
 
     func testZhu3CompareZhu5AndNonZhu5_shouldBeGreaterThan() {
         Zhu.suit = .diamonds
-        Zhu.level = .three
+        Zhu.rank = .three
         let lhs = Card(suit: .diamonds, rank: .five, deckNumber: 1)
         let rhs = Card(suit: .spades, rank: .five, deckNumber: 2)
+        XCTAssertGreaterThan(lhs, rhs)
+    }
+
+    func testZhu3CompareZhu3AndNonZhu5_shouldBeGreaterThan() {
+        Zhu.suit = .diamonds
+        Zhu.rank = .three
+        let lhs = Card(suit: .diamonds, rank: .three, deckNumber: 1)
+        let rhs = Card(suit: .spades, rank: .five, deckNumber: 2)
+        XCTAssertGreaterThan(lhs, rhs)
+    }
+
+    func testZhu3CompareZhu3AndFuZhu3_shouldBeGreaterThan() {
+        Zhu.suit = .diamonds
+        Zhu.rank = .three
+        let lhs = Card(suit: .diamonds, rank: .three, deckNumber: 1)
+        let rhs = Card(suit: .spades, rank: .three, deckNumber: 2)
+        XCTAssertGreaterThan(lhs, rhs)
+    }
+
+    func testZhu3CompareFuZhu3AndZhu5_shouldBeGreaterThan() {
+        Zhu.suit = .diamonds
+        Zhu.rank = .three
+        let lhs = Card(suit: .spades, rank: .three, deckNumber: 1)
+        let rhs = Card(suit: .diamonds, rank: .five, deckNumber: 2)
         XCTAssertGreaterThan(lhs, rhs)
     }
 }

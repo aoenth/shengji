@@ -71,6 +71,16 @@ extension Card: Comparable {
             break
         }
 
+        if lhs.rank == Zhu.rank && rhs.rank == Zhu.rank {
+            if lhs.suit == Zhu.suit && rhs.suit == Zhu.suit {
+                return false
+            } else if lhs.suit == Zhu.suit {
+                return false
+            } else if rhs.suit == Zhu.suit {
+                return true
+            }
+        }
+
         if lhs.suit == Zhu.suit && rhs.suit == Zhu.suit {
             return lhs.rank < rhs.rank
         }

@@ -8,41 +8,41 @@
 import Foundation
 
 final class Zhu {
-    private static var _value: Suit?
-    private static var _level: Rank = .two
+    private static var _suit: Suit?
+    private static var _rank: Rank = .two
 
     static func shenji() {
-        let currentLevel = _level.rawValue
+        let currentLevel = _rank.rawValue
         if currentLevel == 13 {
-            _level = Rank(rawValue: 1)!
+            _rank = Rank(rawValue: 1)!
         } else if currentLevel == 1  {
-            _level = Rank(rawValue: 14)!
+            _rank = Rank(rawValue: 14)!
         } else if currentLevel == 14 {
-            _level = Rank(rawValue: 2)!
+            _rank = Rank(rawValue: 2)!
         } else {
-            _level = Rank(rawValue: currentLevel + 1)!
+            _rank = Rank(rawValue: currentLevel + 1)!
         }
     }
 
-    static var level: Rank {
+    static var rank: Rank {
         get {
-            _level
+            _rank
         }
         set {
-            _level = newValue
+            _rank = newValue
         }
     }
 
     static var suit: Suit? {
         get {
-            _value
+            _suit
         }
         set {
             if let value = newValue {
                 if value == .leftBower || value == .rightBower {
-                    _value = nil
+                    _suit = nil
                 } else {
-                    _value = value
+                    _suit = value
                 }
             }
         }
