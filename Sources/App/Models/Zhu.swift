@@ -11,7 +11,7 @@ final class Zhu {
     private static var _suit: Suit?
     private static var _rank: Rank = .two
 
-    static func shenji() {
+    static func shengji() {
         let currentLevel = _rank.rawValue
         if currentLevel == 13 {
             _rank = Rank(rawValue: 1)!
