@@ -1,2 +1,2 @@
-# Shenji
-API of a multiplayer real-time shenji game using the Vapor framework.
+# Shengji
+API of a multiplayer real-time shengji game using the Vapor framework.
