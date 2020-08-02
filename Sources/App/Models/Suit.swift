@@ -8,7 +8,7 @@
 import Foundation
 
 enum Suit: Int, CustomStringConvertible {
-    case spades = 1, hearts, diamonds, clubs, leftBower, rightBower
+    case spades, hearts, diamonds, clubs, leftBower, rightBower
 
     public var description: String {
         switch self {
