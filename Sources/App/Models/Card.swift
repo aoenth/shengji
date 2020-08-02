@@ -30,6 +30,14 @@ extension Card {
             self.deckNumber = deckNumber
         }
     }
+
+    static var leftBower: Card {
+        self.init(suit: .leftBower, rank: .leftBower, deckNumber: 1)
+    }
+
+    static var rightBower: Card {
+        self.init(suit: .rightBower, rank: .rightBower, deckNumber: 1)
+    }
 }
 
 extension Card {
@@ -38,9 +46,15 @@ extension Card {
     }
 }
 
+extension Card: Equatable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.suit == rhs.suit && lhs.rank == rhs.rank
+    }
+}
+
 extension Card: Comparable {
     static func < (lhs: Card, rhs: Card) -> Bool {
-        if Zhu.value == nil {
+        if Zhu.suit == nil {
             return lhs.rank < rhs.rank
         }
 
@@ -49,19 +63,23 @@ extension Card: Comparable {
             return false
         case (.leftBower, _):
             return rhs.suit == .rightBower
+        case (_, .rightBower):
+            return true
+        case (_, .leftBower):
+            return lhs.suit != .rightBower
         default:
             break
         }
 
-        if lhs.suit == Zhu.value && rhs.suit == Zhu.value {
+        if lhs.suit == Zhu.suit && rhs.suit == Zhu.suit {
             return lhs.rank < rhs.rank
         }
 
-        if lhs.suit == Zhu.value {
+        if lhs.suit == Zhu.suit {
             return false
         }
 
-        if rhs.suit == Zhu.value {
+        if rhs.suit == Zhu.suit {
             return true
         }
 
