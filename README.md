@@ -1,2 +1,2 @@
 # Shenji
-A multiplayer real-time shenji game.
+API of a multiplayer real-time shenji game using the Vapor framework.
