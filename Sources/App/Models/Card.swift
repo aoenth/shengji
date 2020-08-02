@@ -5,7 +5,6 @@ struct Card {
     let rank: Rank
     let deckNumber: Int
 }
-
 extension Card {
     init(id: Int) {
         guard 8 ... 115 ~= id else {
@@ -22,15 +21,17 @@ extension Card {
         } else {
             let suit = id % 4
             self.suit = Suit(rawValue: suit)!
-
+            
             let rank = id / 8
             self.rank = Rank(rawValue: rank)!
-
+            
             let deckNumber = id % 8 < 3 ? 1 : 2
             self.deckNumber = deckNumber
         }
     }
+}
 
+extension Card {
     static var leftBower: Card {
         self.init(suit: .leftBower, rank: .leftBower, deckNumber: 1)
     }
@@ -41,7 +42,7 @@ extension Card {
 }
 
 extension Card {
-    var id: Int {
+    var cardID: Int {
         8 * rank.rawValue + (suit.rawValue - 1) + (deckNumber - 1) * 4
     }
 }
@@ -52,47 +53,3 @@ extension Card: Equatable {
     }
 }
 
-extension Card: Comparable {
-    static func < (lhs: Card, rhs: Card) -> Bool {
-        if Zhu.suit == nil {
-            return lhs.rank < rhs.rank
-        }
-
-        switch (lhs.suit, rhs.suit) {
-        case (.rightBower, _):
-            return false
-        case (.leftBower, _):
-            return rhs.suit == .rightBower
-        case (_, .rightBower):
-            return true
-        case (_, .leftBower):
-            return lhs.suit != .rightBower
-        default:
-            break
-        }
-
-        if lhs.rank == Zhu.rank && rhs.rank == Zhu.rank {
-            if lhs.suit == Zhu.suit && rhs.suit == Zhu.suit {
-                return false
-            } else if lhs.suit == Zhu.suit {
-                return false
-            } else if rhs.suit == Zhu.suit {
-                return true
-            }
-        }
-
-        if lhs.suit == Zhu.suit && rhs.suit == Zhu.suit {
-            return lhs.rank < rhs.rank
-        }
-
-        if lhs.suit == Zhu.suit {
-            return false
-        }
-
-        if rhs.suit == Zhu.suit {
-            return true
-        }
-
-        return lhs.rank < rhs.rank
-    }
-}
