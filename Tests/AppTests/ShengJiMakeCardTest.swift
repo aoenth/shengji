@@ -109,4 +109,10 @@ class ShengJiMakeCardTest: XCTestCase {
         XCTAssertEqual(card.cardID, 115)
     }
     
+    func testHashFunction() {
+        let cardA = Card(suit: .hearts, rank: Rank.two, deckNumber: 1)
+        let cardB = Card(suit: .hearts, rank: Rank.two, deckNumber: 2)
+        XCTAssertNotEqual(cardA.cardID, cardB.cardID)
+    }
+    
 }

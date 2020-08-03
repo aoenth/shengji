@@ -67,8 +67,9 @@ class ShenJiBasicTest: XCTestCase {
 
     func testCompareZhuTwoZhuThree_shouldBeLessThan() {
         Zhu.suit = .diamonds
-        let lhs = Card(suit: .diamonds, rank: .two, deckNumber: 1)
-        let rhs = Card(suit: .diamonds, rank: .three, deckNumber: 2)
+        Zhu.rank = .two
+        let lhs = Card(suit: .diamonds, rank: .three, deckNumber: 1)
+        let rhs = Card(suit: .diamonds, rank: .two, deckNumber: 2)
         XCTAssertLessThan(lhs, rhs)
     }
 
@@ -90,7 +91,7 @@ class ShenJiBasicTest: XCTestCase {
         Zhu.suit = .diamonds
         let lhs = Card(suit: .diamonds, rank: .two, deckNumber: 1)
         let rhs = Card(suit: .diamonds, rank: .two, deckNumber: 2)
-        XCTAssertEqual(lhs, rhs)
+        XCTAssertTrue(lhs.isEqual(to: rhs))
     }
 
     func testNoZhuCompareTwoDifferentNonZhu_shouldBeLessThan() {

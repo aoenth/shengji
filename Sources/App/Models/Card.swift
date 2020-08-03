@@ -43,13 +43,23 @@ extension Card {
 
 extension Card {
     var cardID: Int {
-        8 * rank.rawValue + (suit.rawValue - 1) + (deckNumber - 1) * 4
+        if rank == .leftBower {
+            return 112 + deckNumber - 1
+        }
+        else if rank == .rightBower {
+            return 114 + deckNumber - 1
+        }
+        else{
+            return 8 * rank.rawValue + suit.rawValue + (deckNumber - 1) * 4
+        }
+        
     }
 }
 
-extension Card: Equatable {
-    static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.suit == rhs.suit && lhs.rank == rhs.rank
+
+
+extension Card: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(cardID)
     }
 }
-
