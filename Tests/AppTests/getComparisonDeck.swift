@@ -9,8 +9,8 @@ import XCTest
 @testable import App
 class getComparisonDeck: XCTestCase {
     func test1() {
-        Zhu.suit = Suit.hearts
-        Zhu.rank = Rank.two
+        Zhu.suit = Suit.diamonds
+        Zhu.rank = Rank.five
         Card.comparisonDeck
         
     }

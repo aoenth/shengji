@@ -29,7 +29,7 @@ extension Card {
              Card(id: 112) : 2,
              Card(id: 113) : 2]
         var baseComparisonCounter = 3
-        if zhuSuit != Suit.leftBower && zhuSuit != Suit.rightBower {
+        if Zhu.rank != Rank.leftBower && Zhu.rank != Rank.rightBower {
             if let zhuSuit = zhuSuit {
                 comparisonDeck[Card(suit: zhuSuit, rank: Zhu.rank, deckNumber: 1)] = baseComparisonCounter
                 comparisonDeck[Card(suit: zhuSuit, rank: Zhu.rank, deckNumber: 2)] = baseComparisonCounter
@@ -44,17 +44,17 @@ extension Card {
             baseComparisonCounter += 1
         }
         
-        if zhuSuit == Suit.leftBower || zhuSuit == Suit.rightBower || zhuSuit == nil {
+        if zhuSuit == nil {
             for rank in rankOrder {
-                guard let rank = Rank(rawValue: rank) else {
-                    return comparisonDeck
-                }
-                guard let rankIncrease = rankOrder.firstIndex(of: rank.rawValue) else{
-                    return comparisonDeck
-                }
-                for suit in [Suit.spades, .hearts, .diamonds, .clubs]{
-                    comparisonDeck[Card(suit: suit, rank: rank, deckNumber: 1)] = baseComparisonCounter + rankIncrease
-                    comparisonDeck[Card(suit: suit, rank: rank, deckNumber: 2)] = baseComparisonCounter + rankIncrease
+                if rank != Zhu.rank.rawValue{
+                    guard let rank = Rank(rawValue: rank) else {
+                        return comparisonDeck
+                    }
+                    for suit in [Suit.spades, .hearts, .diamonds, .clubs]{
+                        comparisonDeck[Card(suit: suit, rank: rank, deckNumber: 1)] = baseComparisonCounter
+                        comparisonDeck[Card(suit: suit, rank: rank, deckNumber: 2)] = baseComparisonCounter
+                    }
+                baseComparisonCounter += 1
                 }
             }
         }
@@ -63,30 +63,26 @@ extension Card {
                 guard let rank = Rank(rawValue: rank) else {
                     return comparisonDeck
                 }
-                guard let rankIncrease = rankOrder.firstIndex(of: rank.rawValue) else{
-                    return comparisonDeck
-                }
                 guard let zhuSuit = Zhu.suit else{
                     return comparisonDeck
                 }
                 if rank != Zhu.rank {
-                    comparisonDeck[Card(suit: zhuSuit, rank: rank, deckNumber: 1)] = 5 + rankIncrease
-                    comparisonDeck[Card(suit: zhuSuit, rank: rank, deckNumber: 2)] = 5 + rankIncrease
+                    comparisonDeck[Card(suit: zhuSuit, rank: rank, deckNumber: 1)] = baseComparisonCounter
+                    comparisonDeck[Card(suit: zhuSuit, rank: rank, deckNumber: 2)] = baseComparisonCounter
+                    baseComparisonCounter += 1
                 }
             }
             for rank in rankOrder {
                 guard let rank = Rank(rawValue: rank) else {
                     return comparisonDeck
                 }
-                guard let rankIncrease = rankOrder.firstIndex(of: rank.rawValue) else{
-                    return comparisonDeck
-                }
                 for suit in [Suit.spades, .hearts, .diamonds, .clubs]{
                     if suit != zhuSuit && rank != Zhu.rank {
-                        comparisonDeck[Card(suit: suit, rank: rank, deckNumber: 1)] = 17 + rankIncrease
-                        comparisonDeck[Card(suit: suit, rank: rank, deckNumber: 2)] = 17 + rankIncrease
+                        comparisonDeck[Card(suit: suit, rank: rank, deckNumber: 1)] = baseComparisonCounter
+                        comparisonDeck[Card(suit: suit, rank: rank, deckNumber: 2)] = baseComparisonCounter
                     }
                 }
+                baseComparisonCounter += 1
 
             }
         }
@@ -108,45 +104,3 @@ extension Card: Comparable {
         return comparisonDeck[lhs]! > comparisonDeck[rhs]!
     }
 }
-    //    static func < (lhs: Card, rhs: Card) -> Bool {
-    //        if zhuSuit == nil {
-    //            return lhs.rank < rhs.rank
-    //        }
-    //
-    //        switch (lhs.suit, rhs.suit) {
-    //        case (.rightBower, _):
-    //            return false
-    //        case (.leftBower, _):
-    //            return rhs.suit == .rightBower
-    //        case (_, .rightBower):
-    //            return true
-    //        case (_, .leftBower):
-    //            return lhs.suit != .rightBower
-    //        default:
-    //            break
-    //        }
-    //
-    //        if lhs.rank == Zhu.rank && rhs.rank == Zhu.rank {
-    //            if lhs.suit == zhuSuit && rhs.suit == zhuSuit {
-    //                return false
-    //            } else if lhs.suit == zhuSuit {
-    //                return false
-    //            } else if rhs.suit == zhuSuit {
-    //                return true
-    //            }
-    //        }
-    //
-    //        if lhs.suit == zhuSuit && rhs.suit == zhuSuit {
-    //            return lhs.rank < rhs.rank
-    //        }
-    //
-    //        if lhs.suit == zhuSuit {
-    //            return false
-    //        }
-    //
-    //        if rhs.suit == zhuSuit {
-    //            return true
-    //        }
-    //
-    //        return lhs.rank < rhs.rank
-    //    }

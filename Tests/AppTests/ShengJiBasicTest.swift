@@ -46,6 +46,7 @@ class ShenJiBasicTest: XCTestCase {
 
     func testCompareTwoAce_shouldBeLessThan() {
         Zhu.suit = nil
+        Zhu.rank = Rank.leftBower
         let lhs = Card(suit: .spades, rank: .two, deckNumber: 1)
         let rhs = Card(suit: .spades, rank: .ace, deckNumber: 1)
         XCTAssertLessThan(lhs, rhs)
