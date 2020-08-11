@@ -5,6 +5,7 @@ struct Card {
     let rank: Rank
     let deckNumber: Int
 }
+
 extension Card {
     init(id: Int) {
         guard 8 ... 115 ~= id else {
@@ -61,5 +62,11 @@ extension Card {
 extension Card: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(cardID)
+    }
+}
+
+extension Card: CustomStringConvertible {
+    var description: String {
+        "\(suit)\(rank)(\(deckNumber))"
     }
 }

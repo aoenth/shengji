@@ -86,8 +86,6 @@ extension Card {
 
             }
         }
-        print("Dictionary")
-        printDictionary(comparisonDeck)
         return comparisonDeck
     }
     
@@ -97,10 +95,16 @@ extension Card {
     func isEqual(to card: Card) -> Bool {
         return Card.comparisonDeck[self] == Card.comparisonDeck[card]
     }
+    func isZhu() -> Bool{
+        if self.suit == Zhu.suit || self.suit == Suit.leftBower || self.suit == Suit.rightBower{
+            return true
+        }
+        return false
+    }
 }
 
 extension Card: Comparable {
     static func < (lhs: Card, rhs: Card) -> Bool {
-        return comparisonDeck[lhs]! > comparisonDeck[rhs]!
+        return comparisonDeck[lhs]! < comparisonDeck[rhs]!
     }
 }

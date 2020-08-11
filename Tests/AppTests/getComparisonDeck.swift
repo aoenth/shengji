@@ -11,7 +11,20 @@ class getComparisonDeck: XCTestCase {
     func test1() {
         Zhu.suit = Suit.diamonds
         Zhu.rank = Rank.five
-        Card.comparisonDeck
+//        let dict = Card.comparisonDeck
+//        Card.printDictionary(dict)
+        let a = Hand(cards: [
+            Card(suit: Suit.hearts, rank: Rank.two, deckNumber:1),
+            Card(suit: Suit.hearts, rank: Rank.two, deckNumber:2),
+            Card(suit: Suit.hearts, rank: Rank.three, deckNumber:1),
+            Card(suit: Suit.hearts, rank: Rank.three, deckNumber:2),
+            Card(suit: Suit.hearts, rank: Rank.four, deckNumber:1)]
+            )
+        print(a.analyzeHand())
         
+    }
+    
+    func test2() {
+        print(Card(id:8))
     }
 }

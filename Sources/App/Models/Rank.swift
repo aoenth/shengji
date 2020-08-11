@@ -12,6 +12,25 @@ enum Rank: Int, CaseIterable {
     case jack, queen, king, leftBower, rightBower
 }
 
+extension Rank: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .ace:
+            return "A"
+        case .jack:
+            return "J"
+        case .queen:
+            return "Q"
+        case .king:
+            return "K"
+        case .leftBower, .rightBower:
+            return ""
+        default:
+            return "\(rawValue)"
+        }
+    }
+}
+
 extension Rank: Comparable {
     static func < (lhs: Rank, rhs: Rank) -> Bool {
 

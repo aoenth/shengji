@@ -13,13 +13,13 @@ enum Suit: Int, CustomStringConvertible {
     public var description: String {
         switch self {
         case .spades:
-            return "Spades"
+            return "♠️"
         case .hearts:
-            return "Hearts"
+            return "❤️"
         case .diamonds:
-            return "Diamonds"
+            return "♦️"
         case .clubs:
-            return "Clubs"
+            return "♣️"
         case .leftBower:
             return "Left Bower"
         case .rightBower:
